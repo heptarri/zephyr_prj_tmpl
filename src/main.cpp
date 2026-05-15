@@ -7,6 +7,16 @@ static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
 static const struct gpio_dt_spec button =
     GPIO_DT_SPEC_GET(DT_ALIAS(sw0), gpios);
 
+void thread1_dummy(void* dummy) {
+  ARG_UNUSED(dummy);
+
+  while(1) {
+    k_msleep(1);
+  }
+}
+
+K_THREAD_DEFINE(tid,1024,thread1_dummy,NULL,NULL,NULL,5,0,0);
+
 int main() {
   int ret;
 

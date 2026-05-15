@@ -1,2 +1,0 @@
-# Load Zephyr board defconfig descriptions.
-osource "/Users/hepmac/Workspace/zephyr_ws/tmpl_prj/boards/st/Kconfig.defconfig"

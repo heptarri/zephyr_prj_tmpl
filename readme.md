@@ -3,7 +3,7 @@
 ## Usage
 
 ```sh
-west build
+west build -b my_board
 west flash
 west debugserver
 # ...

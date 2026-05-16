@@ -10,12 +10,12 @@ static const struct gpio_dt_spec button =
 void thread1_dummy(void* dummy) {
   ARG_UNUSED(dummy);
 
-  while(1) {
+  while (1) {
     k_msleep(1);
   }
 }
 
-K_THREAD_DEFINE(tid,1024,thread1_dummy,NULL,NULL,NULL,5,0,0);
+K_THREAD_DEFINE(tid, 256, thread1_dummy, NULL, NULL, NULL, 5, 0, 0);
 
 int main() {
   int ret;

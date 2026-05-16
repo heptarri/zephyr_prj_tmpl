@@ -10,11 +10,20 @@
         zephyr,flash = &flash0;
     };
 
+    // led {
+    //     compatible = "gpio-leds";
+
+    //     ld_2: led {
+    //         gpios = <&gpioa 5 GPIO_ACTIVE_HIGH>;
+    //         label = "User LD2";
+    //     };
+    // };
+
     led {
-        compatible = "gpio-leds";
+        compatible = "pwm-leds";
 
         ld_2: led {
-            gpios = <&gpioa 5 GPIO_ACTIVE_HIGH>;
+            pwms = <&pwm2 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
             label = "User LD2";
         };
     };
@@ -63,3 +72,11 @@
     status = "okay";
 };
 
+&timers2 {
+    status = "okay";
+    pwm2: pwm {
+        status = "okay";
+        pinctrl-0 = <&tim2_ch1_pa5>;
+        pinctrl-names = "default";
+    };
+};

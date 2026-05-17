@@ -13,4 +13,5 @@ target_sources(app PRIVATE
     # src/app/user-gpio.cpp
     src/app/user-pwm.cpp
     src/app/user-adc.cpp
+    src/app/user-spi.cpp
 )

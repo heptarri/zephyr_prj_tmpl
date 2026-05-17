@@ -35,6 +35,7 @@
 	aliases {
 		led0 = &ld_2;
 		sw0 = &b_1;
+		spi-1 = &spi3;
 	};
 };
 
@@ -61,13 +62,8 @@
 &spi3 {
 	status = "okay";
 	
-	pinctrl-0 = <&spi3_sck_pb12 &spi3_miso_pc11 &spi3_mosi_pc12>;
+	pinctrl-0 = <&spi3_sck_pc10 &spi3_miso_pc11 &spi3_mosi_pc12>;
 	pinctrl-names = "default";
-	cs-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;
-
-	spi-device@0 {
-		reg = <0>;
-	};
 };
 
 &timers2 {

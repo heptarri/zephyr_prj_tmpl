@@ -1,0 +1,81 @@
+/ {
+	zephyr,user {
+		io-channels = <&adc1 6>;
+	};
+
+	// 注：如果在 CMakeLists 中引入 user-gpios，需要将注释的 led 替换掉下面的 led 节点。
+
+	// led {
+	// 	compatible = "gpio-leds";
+
+	// 	ld_2: led {
+	// 		gpios = <&gpioa 5 GPIO_ACTIVE_HIGH>;
+	// 		label = "User LD2";
+	// 	};
+	// };
+
+	led {
+		compatible = "pwm-leds";
+
+		ld_2: led {
+			pwms = <&pwm2 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+			label = "User LD2";
+		};
+	};
+
+	key {
+		compatible = "gpio-keys";
+
+		b_1: button {
+			label = "User";
+			gpios = <&gpioc 13 GPIO_ACTIVE_LOW>;
+		};
+	};
+
+	aliases {
+		led0 = &ld_2;
+		sw0 = &b_1;
+	};
+};
+
+&adc1 {
+	status = "okay";
+	
+	pinctrl-0 = <&adc1_in6_pa6>;
+	pinctrl-names = "default";
+
+	st,adc-prescaler = <2>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channels@6 {
+		reg = <0>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
+	};
+};
+
+&spi3 {
+	status = "okay";
+	
+	pinctrl-0 = <&spi3_sck_pb12 &spi3_miso_pc11 &spi3_mosi_pc12>;
+	pinctrl-names = "default";
+	cs-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;
+
+	spi-device@0 {
+		reg = <0>;
+	};
+};
+
+&timers2 {
+	status = "okay";
+
+	pwm2: pwm {
+		status = "okay";
+		pinctrl-0 = <&tim2_ch1_pa5>;
+		pinctrl-names = "default";
+	};
+};

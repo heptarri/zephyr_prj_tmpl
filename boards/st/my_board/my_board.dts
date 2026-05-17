@@ -2,6 +2,7 @@
 
 #include <st/f4/stm32f411Xe.dtsi>
 #include <st/f4/stm32f411r(c-e)tx-pinctrl.dtsi>
+
 / {
     chosen {
         zephyr,console = &usart2;
@@ -74,6 +75,7 @@
 
 &timers2 {
     status = "okay";
+
     pwm2: pwm {
         status = "okay";
         pinctrl-0 = <&tim2_ch1_pa5>;
